@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C25960519EC519B008021D0 /* BLCMainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C25960419EC519B008021D0 /* BLCMainMenuViewController.m */; };
 		1C9F4E3319EA007400E0A5F1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C9F4E3219EA007400E0A5F1 /* main.m */; };
 		1C9F4E3619EA007400E0A5F1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C9F4E3519EA007400E0A5F1 /* AppDelegate.m */; };
 		1C9F4E3919EA007400E0A5F1 /* BLCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C9F4E3819EA007400E0A5F1 /* BLCViewController.m */; };
@@ -27,6 +28,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1C25960319EC519B008021D0 /* BLCMainMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLCMainMenuViewController.h; sourceTree = "<group>"; };
+		1C25960419EC519B008021D0 /* BLCMainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLCMainMenuViewController.m; sourceTree = "<group>"; };
 		1C9F4E2D19EA007400E0A5F1 /* Alcolator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Alcolator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C9F4E3119EA007400E0A5F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1C9F4E3219EA007400E0A5F1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -84,6 +87,8 @@
 			children = (
 				1C9F4E3419EA007400E0A5F1 /* AppDelegate.h */,
 				1C9F4E3519EA007400E0A5F1 /* AppDelegate.m */,
+				1C25960319EC519B008021D0 /* BLCMainMenuViewController.h */,
+				1C25960419EC519B008021D0 /* BLCMainMenuViewController.m */,
 				1C9F4E3719EA007400E0A5F1 /* BLCViewController.h */,
 				1C9F4E3819EA007400E0A5F1 /* BLCViewController.m */,
 				1C9F4E5619EBA00900E0A5F1 /* BLCWhiskeyViewController.h */,
@@ -221,6 +226,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1C9F4E3919EA007400E0A5F1 /* BLCViewController.m in Sources */,
+				1C25960519EC519B008021D0 /* BLCMainMenuViewController.m in Sources */,
 				1C9F4E5819EBA00900E0A5F1 /* BLCWhiskeyViewController.m in Sources */,
 				1C9F4E3619EA007400E0A5F1 /* AppDelegate.m in Sources */,
 				1C9F4E3319EA007400E0A5F1 /* main.m in Sources */,

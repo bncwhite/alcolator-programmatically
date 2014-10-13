@@ -23,6 +23,8 @@
     // Calls the superclass's implementation
     [super viewDidLoad];
     
+    self.title = NSLocalizedString(@"Wine", @"wine");
+    
     // Set our primary view's background color to lightGrayColor
     self.view.backgroundColor = [UIColor whiteColor];
     
