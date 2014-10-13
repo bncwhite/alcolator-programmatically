@@ -13,6 +13,7 @@
 @property (strong, nonatomic) UITextField *beerPercentTextField;
 @property (strong, nonatomic) UISlider *beerCountSlider;
 @property (strong, nonatomic) UILabel *resultLabel;
+@property (nonatomic) UILabel *quantityLabel;
 
 
 - (void)buttonPressed:(UIButton *)sender;

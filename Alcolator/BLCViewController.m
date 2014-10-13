@@ -68,6 +68,7 @@
     UITextField *textField = [[UITextField alloc] init];
     UISlider *slider = [[UISlider alloc] init];
     UILabel *label = [[UILabel alloc] init];
+    UILabel *quantityLabel = [[UILabel alloc] init];
     UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] init];
     
@@ -75,6 +76,7 @@
     [self.view addSubview:textField];
     [self.view addSubview:slider];
     [self.view addSubview:label];
+    [self.view addSubview:quantityLabel];
     [self.view addSubview:button];
     [self.view addGestureRecognizer:tap];
     
@@ -82,6 +84,7 @@
     self.beerPercentTextField = textField;
     self.beerCountSlider = slider;
     self.resultLabel = label;
+    self.quantityLabel = quantityLabel;
     self.calculateButton = button;
     self.hideKeyboardTapGestureRecognizer = tap;
 }
@@ -116,7 +119,12 @@
     [self.beerCountSlider setMinimumTrackImage:[self sliderColorBugWA:[UIColor greenColor]] forState:UIControlStateNormal];
     
     CGFloat bottomOfSlider = CGRectGetMaxY(self.beerCountSlider.frame);
-    self.resultLabel.frame = CGRectMake(padding, bottomOfSlider + padding, itemWidth, itemHeight * 4);
+    
+    self.quantityLabel.frame = CGRectMake(padding, bottomOfSlider + padding, viewWidth - padding - padding, itemHeight);
+    
+    CGFloat bottomOfQuantityLabel = CGRectGetMaxY(self.quantityLabel.frame);
+    
+    self.resultLabel.frame = CGRectMake(padding, bottomOfQuantityLabel + padding, itemWidth, itemHeight * 4);
     
     CGFloat bottomOfLabel = CGRectGetMaxY(self.resultLabel.frame);
     self.calculateButton.frame = CGRectMake(padding, bottomOfLabel + padding, itemWidth, itemHeight);
@@ -138,6 +146,15 @@
 - (void)sliderValueDidChange:(UISlider *)sender {
     
     NSLog(@"Slider value changed to %f", sender.value);
+    
+    NSString *glass = [NSString stringWithFormat:@"%.2f wine glass", self.beerCountSlider.value];
+    
+    if (self.beerCountSlider.value > 1) {
+        glass = [glass stringByAppendingString:@"es"];
+    }
+    
+    self.quantityLabel.text = glass;
+    
     [self.beerPercentTextField resignFirstResponder];
 }
 
