@@ -18,8 +18,6 @@
 {
     [super viewDidLoad];
     self.title = NSLocalizedString(@"Whiskey", @"whiskey");
-    
-    
 }
 
 - (void)buttonPressed:(UIButton *)sender;

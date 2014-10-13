@@ -105,19 +105,15 @@
     CGFloat itemWidth = viewWidth - padding - padding;
     CGFloat itemHeight = 44;
     
-    self.beerPercentTextField.frame = CGRectMake(padding, padding, itemWidth, itemHeight);
+    self.beerPercentTextField.frame = CGRectMake(padding, padding + 60, itemWidth, itemHeight);
     self.beerPercentTextField.borderStyle = UITextBorderStyleRoundedRect;
     
     CGFloat bottomOfTextField = CGRectGetMaxY(self.beerPercentTextField.frame);
     self.beerCountSlider.frame = CGRectMake(padding, bottomOfTextField + padding, itemWidth, itemHeight);
     
-    self.beerCountSlider.minimumTrackTintColor = [UIColor redColor];
-    //self.beerCountSlider.thumbTintColor = [UIColor blueColor];
-    //self.beerCountSlider.maximumTrackTintColor = [UIColor greenColor];
+    [self.beerCountSlider setMaximumTrackImage:[self sliderColorBugWA:[UIColor redColor]] forState:UIControlStateNormal];
     
-    //[[UISlider appearance] setMaximumTrackTintColor:[UIColor redColor]];
-    //[[UISlider appearance] setThumbTintColor:[UIColor orangeColor]];
-    //[[UISlider appearance] setMinimumTrackTintColor:[UIColor greenColor]];
+    [self.beerCountSlider setMinimumTrackImage:[self sliderColorBugWA:[UIColor greenColor]] forState:UIControlStateNormal];
     
     CGFloat bottomOfSlider = CGRectGetMaxY(self.beerCountSlider.frame);
     self.resultLabel.frame = CGRectMake(padding, bottomOfSlider + padding, itemWidth, itemHeight * 4);
@@ -125,6 +121,18 @@
     CGFloat bottomOfLabel = CGRectGetMaxY(self.resultLabel.frame);
     self.calculateButton.frame = CGRectMake(padding, bottomOfLabel + padding, itemWidth, itemHeight);
     
+}
+
+- (UIImage *) sliderColorBugWA:(UIColor *)color
+{
+    CGRect rect = CGRectMake(0, 0, 1, 2);
+    UIGraphicsBeginImageContextWithOptions(rect.size, NO, 0);
+    [color setFill];
+    UIRectFill(rect);
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return image;
 }
 
 - (void)sliderValueDidChange:(UISlider *)sender {

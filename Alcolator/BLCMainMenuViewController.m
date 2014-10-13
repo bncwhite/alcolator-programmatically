@@ -24,7 +24,7 @@
     self.title = NSLocalizedString(@"Select Beverage Type", @"select beverage type");
     
     [self.wineButton setTitle:NSLocalizedString(@"Wine", @"wine") forState:UIControlStateNormal];
-    [self.wineButton setTitle:NSLocalizedString(@"Whiskey", @"whiskey") forState:UIControlStateNormal];
+    [self.whiskeyButton setTitle:NSLocalizedString(@"Whiskey", @"whiskey") forState:UIControlStateNormal];
 
     [self.wineButton addTarget:self action:@selector(winePressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.whiskeyButton addTarget:self action:@selector(whiskeyPressed:) forControlEvents:UIControlEventTouchUpInside];
@@ -39,8 +39,8 @@
     [self.view addSubview:wineButton];
     [self.view addSubview:whiskeyButton];
     
-    wineButton = self.wineButton;
-    whiskeyButton = self.whiskeyButton;
+    self.wineButton = wineButton;
+    self.whiskeyButton = whiskeyButton;
     
 }
 
@@ -48,9 +48,14 @@
 {
     [super viewWillLayoutSubviews];
     
-    self.wineButton.frame = CGRectMake(20, 50, 50, 50);
+    self.wineButton.frame = CGRectMake(20, 150, 100, 50);
+    [self.wineButton setBackgroundColor:[UIColor redColor]];
+    self.wineButton.titleLabel.textColor = [UIColor whiteColor];
     
-    self.whiskeyButton.frame = CGRectMake(20, 150, 50, 50);
+    self.whiskeyButton.frame = CGRectMake(CGRectGetMaxX(self.wineButton.frame) + 40, 150, 100, 50);
+    [self.whiskeyButton setBackgroundColor:[UIColor purpleColor]];
+    self.whiskeyButton.titleLabel.textColor = [UIColor whiteColor];
+
 }
 
 - (void)didReceiveMemoryWarning {
