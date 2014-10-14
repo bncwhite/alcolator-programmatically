@@ -13,18 +13,28 @@
 
 @property (weak, nonatomic) UIButton *calculateButton;
 @property (weak, nonatomic) UITapGestureRecognizer *hideKeyboardTapGestureRecognizer;
+@property (nonatomic) float sliderHeight;
 
 @end
 
 @implementation BLCViewController
 
+- (instancetype) init {
+    self = [super init];
+    
+    if (self) {
+        self.title = NSLocalizedString(@"Wine", @"wine");
+        [self.tabBarItem setTitlePositionAdjustment:UIOffsetMake(0, -18)];
+    }
+    
+    return self;
+}
+
 - (void)viewDidLoad
 {
     // Calls the superclass's implementation
     [super viewDidLoad];
-    
-    self.title = NSLocalizedString(@"Wine", @"wine");
-    
+        
     // Set our primary view's background color to lightGrayColor
     self.view.backgroundColor = [UIColor whiteColor];
     
@@ -53,6 +63,9 @@
     
     // Gets rid of the maximum number of lines on the label
     self.resultLabel.numberOfLines = 0;
+    
+    self.view.backgroundColor = [UIColor colorWithRed:0.741 green:0.925 blue:0.714 alpha:1];
+    self.sliderHeight = 1.0;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -100,6 +113,17 @@
     }
 }
 
+- (void) updateSliderColors
+{
+    UIColor *customRed = [UIColor colorWithRed:1.0 green:0.0 blue:0.0 alpha:self.beerCountSlider.value / 10];
+    
+    UIColor *customGreen = [UIColor colorWithRed:0.0 green:1.0 blue:0.0 alpha:1 / self.beerCountSlider.value];
+    
+    [self.beerCountSlider setMaximumTrackImage:[self sliderColorBugWA:customGreen] forState:UIControlStateNormal];
+    
+    [self.beerCountSlider setMinimumTrackImage:[self sliderColorBugWA:customRed] forState:UIControlStateNormal];
+}
+
 - (void) viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
     
@@ -113,10 +137,6 @@
     
     CGFloat bottomOfTextField = CGRectGetMaxY(self.beerPercentTextField.frame);
     self.beerCountSlider.frame = CGRectMake(padding, bottomOfTextField + padding, itemWidth, itemHeight);
-    
-    [self.beerCountSlider setMaximumTrackImage:[self sliderColorBugWA:[UIColor redColor]] forState:UIControlStateNormal];
-    
-    [self.beerCountSlider setMinimumTrackImage:[self sliderColorBugWA:[UIColor greenColor]] forState:UIControlStateNormal];
     
     CGFloat bottomOfSlider = CGRectGetMaxY(self.beerCountSlider.frame);
     
@@ -133,7 +153,7 @@
 
 - (UIImage *) sliderColorBugWA:(UIColor *)color
 {
-    CGRect rect = CGRectMake(0, 0, 1, 2);
+    CGRect rect = CGRectMake(0, 0, 1, self.sliderHeight);
     UIGraphicsBeginImageContextWithOptions(rect.size, NO, 0);
     [color setFill];
     UIRectFill(rect);
@@ -155,7 +175,13 @@
     
     self.quantityLabel.text = glass;
     
+    [self updateSliderColors];
+    
     [self.beerPercentTextField resignFirstResponder];
+    
+    [self.tabBarItem setBadgeValue:[NSString stringWithFormat:@"%d", (int)sender.value]];
+    
+    self.sliderHeight = self.beerCountSlider.value * 2;
 }
 
 - (void)buttonPressed:(UIButton *)sender {
